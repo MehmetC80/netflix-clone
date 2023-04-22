@@ -1,10 +1,19 @@
 import Input from '@/components/ui/Input';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+
+  const [variant, setVariant] = useState('login');
+
+  const toggleVariant = useCallback(() => {
+    setVariant((currentVariant) =>
+      currentVariant === 'login' ? 'register' : 'login'
+    );
+  }, []);
+
   return (
     <div
       className="
@@ -48,7 +57,9 @@ const Auth = () => {
             w-full
             '
           >
-            <h2 className='text-white text-4xl mb-8 font-semibold'>Sign in</h2>
+            <h2 className='text-white text-4xl mb-8 font-semibold'>
+              {variant === 'login' ? 'Sign in' : 'register'}
+            </h2>
             <div
               className='
             flex
@@ -64,13 +75,16 @@ const Auth = () => {
                 type='email'
                 value={email}
               />
-              <Input
-                label='Username'
-                onChange={(e: any) => setName(e.target.value)}
-                id='name'
-                type='text'
-                value={name}
-              />
+              {variant === 'register' && (
+                <Input
+                  label='Username'
+                  onChange={(e: any) => setName(e.target.value)}
+                  id='name'
+                  type='text'
+                  value={name}
+                />
+              )}
+
               <Input
                 label='Password'
                 onChange={(e: any) => setPassword(e.target.value)}
@@ -80,13 +94,18 @@ const Auth = () => {
               />
             </div>
             <button className='bg-red-700 py-3 text-white rounded-md w-full mt-10 hover:bg-red-900 transition'>
-              Login
+              {variant === 'login' ? 'Login' : 'Sign up'}
             </button>
             <p className='text-neutral-500 mt-12'>
               {' '}
-              First time using Netflix?
-              <span className='text-white ml-1 hover:underline cursor-pointer'>
-                Create an account!
+              {variant === 'login'
+                ? 'First time using Netflix?'
+                : 'Already have an account?'}
+              <span
+                onClick={toggleVariant}
+                className='text-white ml-1 hover:underline cursor-pointer'
+              >
+                {variant === 'login' ? 'Create an account!' : ' Login'}
               </span>
             </p>
           </div>
