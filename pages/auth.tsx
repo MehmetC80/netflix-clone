@@ -58,7 +58,7 @@ const Auth = () => {
             '
           >
             <h2 className='text-white text-4xl mb-8 font-semibold'>
-              {variant === 'login' ? 'Sign in' : 'register'}
+              {variant === 'login' ? 'Sign in' : 'Register'}
             </h2>
             <div
               className='
