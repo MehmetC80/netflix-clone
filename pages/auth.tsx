@@ -1,4 +1,10 @@
+import Input from '@/components/ui/Input';
+import { useState } from 'react';
+
 const Auth = () => {
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <div
       className="
@@ -50,7 +56,29 @@ const Auth = () => {
             gap-4
             
             '
-            ></div>
+            >
+              <Input
+                label='Email'
+                onChange={(e: any) => setEmail(e.target.value)}
+                id='email'
+                type='email'
+                value={email}
+              />
+              <Input
+                label='Username'
+                onChange={(e: any) => setName(e.target.value)}
+                id='name'
+                type='text'
+                value={name}
+              />
+              <Input
+                label='Password'
+                onChange={(e: any) => setPassword(e.target.value)}
+                id='password'
+                type='password'
+                value={password}
+              />
+            </div>
           </div>
         </div>
       </div>
