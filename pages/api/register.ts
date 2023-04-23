@@ -20,7 +20,7 @@ export default async function handler(
     });
 
     if (existUser) {
-      return res.status(402).json({
+      return res.status(422).json({
         error: 'Email is taken',
       });
     }
@@ -40,6 +40,6 @@ export default async function handler(
     return res.status(200).json(user);
   } catch (err) {
     console.log(err);
-    return res.status(400).end();
+    return res.status(400).json({ error: `Something went wrong: ${err}` });
   }
 }
