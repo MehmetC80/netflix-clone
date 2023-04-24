@@ -11,6 +11,7 @@ export default async function handler(
   }
 
   try {
+    // authenticated this route and extract current user
     const { currentUser } = await serverAuth(req);
 
     return res.status(200).json(currentUser);
