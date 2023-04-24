@@ -11,8 +11,8 @@ const useFavorites = () => {
   return {
     data,
     error,
-    mutate,
     isLoading,
+    mutate,
   };
 };
 export default useFavorites;
